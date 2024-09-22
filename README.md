@@ -145,7 +145,7 @@ name: name,
 
 ### Delete method (ex: Product)
 
-- **Method**: Delet
+- **Method**: Delete
 - **Endpoint**: `api/v1/products/{id}`
 - **Authentication**: Basic or Bearer Token
 - **Request Body**: None
