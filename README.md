@@ -51,6 +51,14 @@ cd folder_name
 python3 manage.py runserver
 ```
 
+10. Create new app under it
+
+```javascript
+python3 manage.py startapp products
+```
+
+11.
+
 ## -- Api Design Basic --
 
 ### Get all method (ex: Products)
