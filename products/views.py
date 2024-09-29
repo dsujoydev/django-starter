@@ -29,3 +29,34 @@ class ProductView(APIView):
             products = Product.objects.all()
             serializer = ProductSerializers(products, many=True)
             return Response(serializer.data)
+        
+    def put(self, request, id=None):
+        try: 
+            product = Product.objects.get(id=id)
+        except Product.DoesNotExist:
+            raise Http404
+        serializer = ProductSerializers(product, data=request.data,)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        return Response(serializer.errors, status.HTTP_400_BAD_REQUEST)
+    
+    def patch(self, request, id=None):
+        try: 
+            product = Product.objects.get(id=id)
+        except Product.DoesNotExist:
+            raise Http404
+        serializer = ProductSerializers(product, data=request.data, partial=True)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        return Response(serializer.errors, status.HTTP_400_BAD_REQUEST)
+
+    def delete(self, request, id=None):
+        try: 
+            product = Product.objects.get(id=id)
+        except Product.DoesNotExist:
+            raise Http404
+        product.delete()
+        serializer = ProductSerializers(product)
+        return Response(serializer.data)
