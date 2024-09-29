@@ -57,7 +57,36 @@ python3 manage.py runserver
 python3 manage.py startapp products
 ```
 
-11.
+11. Install rest-framework
+
+    [Rest Framework](https://www.django-rest-framework.org/#installation)
+
+12. Root app -> settings.py --> INSTALLED_APPS
+
+```javascript
+    "rest_framework",
+    "products.apps.ProductsConfig" or any first app you named,
+```
+
+13. products/app --> models.py
+
+A model for Product table
+
+```python
+class Product (models.Model):
+    name = models.CharField(max_length=255)
+    description = models.TextField()
+    price = models.DecimalField(max_digits=10, decimal_places=2)
+    stock = models.IntegerField()
+    supplier = models.CharField(max_length=255, default="Supplier-1")
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.name
+```
+
+14.
 
 ## -- Api Design Basic --
 
